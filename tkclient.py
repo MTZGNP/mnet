@@ -2,6 +2,20 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 from time import sleep
+import requests
+
+##use the source code as much as you like without removing this comment block
+##              _                        
+##             | |                       
+##    _ __ ___ | |_ ______ _ _ __  _ __  
+##   | '_ ` _ \| __|_  / _` | '_ \| '_ \ 
+##   | | | | | | |_ / / (_| | | | | |_) |
+##   |_| |_| |_|\__/___\__, |_| |_| .__/ 
+##                      __/ |     | |    
+##                     |___/      |_|
+##
+##mutaz.shamaileh2005@gmail.com
+
 ex=""
 root =tk.Tk()
 name=""
@@ -20,12 +34,14 @@ pwBox.insert(0,pw)
 messageList= tk.Listbox(root)
 messageBox=tk.Entry(root)
 def update_loop():
-	
-	root.after(1000,update_loop)
+	for mess in json.loads(requests.get(url="http://mtzgnp.pythonanywhere.com/get?room=%s" % room).text)[messageList.size():]:
+		messageList.insert(tk.END,"%s : %s" % (mess["name"],mess["message"]))
+	root.after(2000,update_loop)
 def send():
 	if name =="":
 		messagebox.showerror("error","please enter name")
 		return 1
+	requests.get(url ="http://mtzgnp.pythonanywhere.com/post?room=%s&name=%s&message=%s" %(room,name,messageBox.get()))
 def change():
 	global name
 	global room

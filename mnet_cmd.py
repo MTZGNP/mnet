@@ -1,10 +1,35 @@
 import requests
 import urllib
 import json
+##use the source code as much as you like without removing this comment block
+##              _                        
+##             | |                       
+##    _ __ ___ | |_ ______ _ _ __  _ __  
+##   | '_ ` _ \| __|_  / _` | '_ \| '_ \ 
+##   | | | | | | |_ / / (_| | | | | |_) |
+##   |_| |_| |_|\__/___\__, |_| |_| .__/ 
+##                      __/ |     | |    
+##                     |___/      |_|
+##
+##mutaz.shamaileh2005@gmail.com
+print("""
+              _                        
+             | |                       
+    _ __ ___ | |_ ______ _ _ __  _ __  
+   | '_ ` _ \| __|_  / _` | '_ \| '_ \ 
+   | | | | | | |_ / / (_| | | | | |_) |
+   |_| |_| |_|\__/___\__, |_| |_| .__/ 
+                      __/ |     | |    
+                     |___/      |_|
+    
+    mutaz.shamaileh2005@gmail.com
+    
+""")
 def encode(message,pw):
     return "".join([chr(ord(char)+ord(pw[i%len(pw)])) for i,char in enumerate(message)])
 def decode(message,pw):
     return "".join([chr(ord(char)-ord(pw[i%len(pw)])) for i,char in enumerate(message)])
+
 print("welcome to mnet")
 name = input("please enter name : ")
 room = input("enter room id : ")
