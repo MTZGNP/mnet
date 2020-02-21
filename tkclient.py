@@ -3,6 +3,8 @@ from tkinter import messagebox
 import json
 from time import sleep
 import requests
+from win10toast import ToastNotifier
+toaster = ToastNotifier()
 
 ##use the source code as much as you like without removing this comment block
 ##              _                        
@@ -42,6 +44,10 @@ def update_loop():
     for mess in json.loads(requests.get(url="http://mtzgnp.pythonanywhere.com/get?room=%s" % room).text)[messageList.size()+fails:]:
         try:
             messageList.insert(tk.END,"%s : %s" % (mess["name"],decode(mess["message"],pw)))
+            toaster.show_toast("new message!",
+            "you've got mail",
+            duration=5,threaded=True)
+
         except:
             fails+=1
     root.after(2000,update_loop)
